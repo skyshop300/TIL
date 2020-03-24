@@ -18,6 +18,12 @@ Queue
 
 Map
 
-[Untitled](Collection%20Framework/Untitled%20Database.csv)
+|인터페이스 분류|특징                                             |구현클래스                        |
+|--------|-----------------------------------------------|-----------------------------|
+|List    |- Index로 접근 <br>- 순서 유지 O <br>- 중복 저장 O                |Arraylist, LinkedList, Vector|
+|Set     |- Index로 접근 - 순서 유지 X - 중복 저장 X                |HashSet, TreeSet             |
+|Map     |- Key와 Value가 한쌍으로 저장 - Key의 중복은 저장 X - 순서 유지 X|HashMap, HashTable, TreeMap  |
+
+
 
 ##
