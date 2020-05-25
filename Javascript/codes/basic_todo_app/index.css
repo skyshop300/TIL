@@ -1,3 +1,8 @@
+body {
+	color : #aa66ee;
+	transition: color 0.5s ease-in-out
+}
+
 .clicked {
 	color: #aa66ee;
 }
