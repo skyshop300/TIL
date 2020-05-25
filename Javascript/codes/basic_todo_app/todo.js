@@ -4,10 +4,26 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 // 자바스크립트 모듈화 공부
 
 const TODO_LS = 'toDos';
-const toDos = [];
+let toDos = [];
 
 function saveToDos() {
 	localStorage.setItem(TODO_LS, JSON.stringify(toDos));
+}
+
+function deleteToDo(event) {
+	const btn =  event.target;
+	const li = btn.parentNode;
+	toDoList.removeChild(li);
+	// 어떤 버튼이 클릭됐는지 알기 위해서 event.target을 사용
+
+	// const cleanToDos = toDos.filter(function(toDo) {
+	// 	return toDo.id !== parseInt(li.id);
+	// });
+
+	const cleanToDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+	toDos = cleanToDos;
+	saveToDos();
+
 }
 
 function paintToDo(text) {
@@ -18,11 +34,14 @@ function paintToDo(text) {
 	const span = document.createElement("span");
 	const newId = toDos.length + 1;
 	deleteButton.innerText = "DEL ❌";
+	deleteButton.addEventListener("click", deleteToDo);
 	span.innerText = text;
 	li.appendChild(span);
 	li.appendChild(deleteButton);
 	li.id = newId;
+	
 	toDoList.appendChild(li);
+
 	const toDoObj = {
 		text: text,
 		id: newId
@@ -44,10 +63,9 @@ function loadToDos() {
 	const loadedToDos = localStorage.getItem(TODO_LS);
 	// 처음 페이지에 진입 했을 떄에
 	if(loadedToDos !== null){
-		console.log(loadToDos);
 		const parsedToDos = JSON.parse(loadedToDos);
 		parsedToDos.forEach(function(toDo) {
-			console.log(toDo.text + "!!!!!!!!");
+			// console.log(toDo.text + "!!!!!!!!");
 			paintToDo(toDo.text);
 		})
 	}
